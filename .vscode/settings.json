@@ -1,0 +1,15 @@
+{
+    "files.encoding": "utf8",
+    "files.autoGuessEncoding": false,
+    "files.insertFinalNewline": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "files.encoding": "utf8"
+    },
+    "C_Cpp.default.encoding": "UTF-8",
+    "clang-format.executable": "D:/scoop/persist/nodejs-lts/bin/node_modules/clang-format/bin/win32/clang-format.exe",
+    "clang-format.style": "file",
+    "editor.tabCompletion": "on",
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.autocomplete": "default"
+}

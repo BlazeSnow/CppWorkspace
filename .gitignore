@@ -1,0 +1,27 @@
+# Build outputs
+*.exe
+*.o
+*.obj
+*.out
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+
+# Debug symbols
+*.pdb
+*.ilk
+
+# IDE / Editor
+.vs/
+*.swp
+*.swo
+*~
+
+# Build directories
+build/
+Debug/
+Release/
+x64/
+x86/
