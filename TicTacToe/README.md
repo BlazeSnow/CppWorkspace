@@ -1,7 +1,5 @@
 # 井字棋
 
-> 此项目已迁移至 [CppWorkspace](https://github.com/BlazeSnow/CppWorkspace/tree/main/TicTacToe)
-
 1. 此程序为井字棋
 2. 按照程序提示，分别由```X```和```O```输入代表位置的数字后回车
 3. 当棋子连成一条线时，决出赢家
