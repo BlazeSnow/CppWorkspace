@@ -15,13 +15,13 @@
  *
  * 源码: https://github.com/BlazeSnow/CppWorkspace
  * 原始仓库: https://github.com/BlazeSnow/Custom-interchange-password
- * 作者: BlazeSnow (2023-2025)
+ * 作者: BlazeSnow (2023-2026)
  */
 
+#include <cstdio>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
-#include <iostream>
 
 using namespace std;
 // 程序支持的密码个数
@@ -45,7 +45,7 @@ void encode(const char *a, int number) {
         for (auto &j : source) {
             // 在密码库结构体中找到原文并打印密码
             if (j.sourceCode == *(a + i)) {
-                cout << j.code;
+                printf("%c", j.code);
                 break;
             }
             // 找不到原文
@@ -55,7 +55,7 @@ void encode(const char *a, int number) {
         }
         // 在密码库结构体里找不到的字符处理
         if (find == NumberOfLetterSupported) {
-            cout << *(a + i);
+            printf("%c", *(a + i));
         }
     }
 }
@@ -67,7 +67,7 @@ void decode(const char *a, int number) {
         for (auto &j : source) {
             // 在密码库结构体中找到密码并打印原文
             if (j.code == *(a + i)) {
-                cout << j.sourceCode;
+                printf("%c", j.sourceCode);
                 break;
             }
             // 找不到密码
@@ -77,7 +77,7 @@ void decode(const char *a, int number) {
         }
         // 在密码库结构体里找不到的字符处理
         if (find == NumberOfLetterSupported) {
-            cout << *(a + i);
+            printf("%c", *(a + i));
         }
     }
 }
@@ -85,16 +85,16 @@ void decode(const char *a, int number) {
 int main() {
     system("chcp 65001");
     system("cls");
-    cout << "Copyright (C) 2024-2025 BlazeSnow. 保留所有权利。" << endl;
-    cout << "当前程序版本号：v1.0.1" << endl;
-    cout << "https://github.com/BlazeSnow/Custom-interchange-password" << endl << endl;
+    printf("Copyright (C) 2024-2026 BlazeSnow. 保留所有权利。\n");
+    printf("当前程序版本号：v1.0.2\n");
+    printf("https://github.com/BlazeSnow/CppWorkspace\n\n");
     // first_use字符变量用于判断是否创建自定义密码文件
     char first_use = '0';
-    cout << "是否创建自定义密码文件?" << endl;
-    cout << "1\t创建自定义密码文件" << endl;
-    cout << "0\t仅读取自定义密码文件" << endl;
-    cout << "请输入:" << endl;
-    cin >> first_use;
+    printf("是否创建自定义密码文件?\n");
+    printf("1\t创建自定义密码文件\n");
+    printf("0\t仅读取自定义密码文件\n");
+    printf("请输入:\n");
+    scanf(" %c", &first_use);
     // first_use变量等于'1'时创建自定义密码文件
     if (first_use == '1') {
         // 创建自定义密码文件
@@ -105,19 +105,19 @@ int main() {
                 file << i.sourceCode << ',' << i.code << endl;
             }
             file.close();
-            cout << "创建密码文件成功" << endl;
+            printf("创建密码文件成功\n");
             // 打印文件路径,path变量用于存储路径
             std::filesystem::path path = std::filesystem::current_path();
-            cout << "密码文件路径: " << path << endl;
-            cout << "密码文件名称: Custom-interchange-password.csv" << endl;
-            cout << "可用表格处理软件Excel处理该文件" << endl;
-            cout << "该表格的左列为源码,右列为密码" << endl;
+            printf("密码文件路径: %s\n", path.string().c_str());
+            printf("密码文件名称: Custom-interchange-password.csv\n");
+            printf("可用表格处理软件Excel处理该文件\n");
+            printf("该表格的左列为源码,右列为密码\n");
             system("pause");
             return 0;
         }
         // 文件创建失败,报错abort
         else {
-            cout << "ERROR:创建文件失败" << endl;
+            printf("ERROR:创建文件失败\n");
             system("pause");
             exit(1);
         }
@@ -135,11 +135,11 @@ int main() {
                 file >> temp;
                 file >> i.code;
             }
-            cout << "读取密码文件成功" << endl;
+            printf("读取密码文件成功\n");
         }
         // 文件读取失败,报错abort
         else {
-            cout << "ERROR:读取密码文件失败" << endl;
+            printf("ERROR:读取密码文件失败\n");
             system("pause");
             exit(1);
         }
@@ -148,16 +148,16 @@ int main() {
         char *a = (char *)calloc(sizeof(char), number);
         // calloc创建检查,失败报错abort
         if (!a) {
-            cout << "ERROR:calloc" << endl;
+            printf("ERROR:calloc\n");
             system("pause");
             exit(1);
         }
         // 输入需要处理的内容
-        cout << "请输入需要编码或解码的内容:" << endl;
+        printf("请输入需要编码或解码的内容:\n");
         // 清空cin序列
-        cin.ignore();
+        scanf("%*[^\n]%*c");
         for (int i = 0; i < number; i++) {
-            *(a + i) = (char)cin.get();
+            *(a + i) = (char)getchar();
             // 检测到回车时结束输入
             if (*(a + i) == '\n') {
                 number = i;
@@ -165,18 +165,18 @@ int main() {
             }
         }
         // 处理内容并输出
-        cout << "编码结果为:" << endl;
+        printf("编码结果为:\n");
         encode(a, number);
-        cout << endl;
-        cout << "解码结果为:" << endl;
+        printf("\n");
+        printf("解码结果为:\n");
         decode(a, number);
-        cout << endl;
+        printf("\n");
         // calloc收尾
         free(a);
     }
     // first_use变量等于其他字符时,报错abort
     else {
-        cout << "ERROR:检测到非法字符" << endl;
+        printf("ERROR:检测到非法字符\n");
         system("pause");
         exit(1);
     }

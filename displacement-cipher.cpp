@@ -10,12 +10,12 @@
  *
  * 源码: https://github.com/BlazeSnow/CppWorkspace
  * 原始仓库: https://github.com/BlazeSnow/displacement-cipher
- * 作者: BlazeSnow (2023-2025)
+ * 作者: BlazeSnow (2023-2026)
  */
 
+#include <cstdio>
 #include <cstdlib>
-#include <iostream>
-#include <string>
+#include <cstring>
 #include <vector>
 
 using namespace std;
@@ -29,40 +29,40 @@ vector<char> p;
 // 编码密码
 void bianma() {
     for (auto i : p) {
-        cout << (char)((int)i + PASSWORD);
+        printf("%c", (char)((int)i + PASSWORD));
     }
 }
 
 // 解码密码
 void jiema() {
     for (auto i : p) {
-        cout << (char)((int)i - PASSWORD);
+        printf("%c", (char)((int)i - PASSWORD));
     }
 }
 
 int main() {
     system("chcp 65001");
     system("cls");
-    cout << "Copyright (C) 2024-2025 BlazeSnow. 保留所有权利。" << endl;
-    cout << "当前程序版本号：v1.0.2" << endl;
-    cout << "https://github.com/BlazeSnow/displacement-cipher" << endl << endl;
+    printf("Copyright (C) 2024-2026 BlazeSnow. 保留所有权利。\n");
+    printf("当前程序版本号：v1.0.3\n");
+    printf("https://github.com/BlazeSnow/CppWorkspace\n\n");
     // 输入
-    cout << "移位密码移位距离：" << PASSWORD << endl;
-    cout << "请输入内容：" << endl;
-    string input;
-    getline(cin, input);
-    p = vector<char>(input.begin(), input.end());
+    printf("移位密码移位距离：%d\n", PASSWORD);
+    printf("请输入内容：\n");
+    char input[1024];
+    scanf(" %[^\n]", input);
+    p = vector<char>(input, input + strlen(input));
     // 输出PASSWORD的值
-    cout << endl;
-    cout << "移位密码移位距离：" << PASSWORD << endl << endl;
+    printf("\n");
+    printf("移位密码移位距离：%d\n\n", PASSWORD);
     // 编码
-    cout << "编码的结果为:" << endl;
+    printf("编码的结果为:\n");
     bianma();
-    cout << endl << endl;
+    printf("\n\n");
     // 解码
-    cout << "解码的结果为:" << endl;
+    printf("解码的结果为:\n");
     jiema();
-    cout << endl << endl;
+    printf("\n\n");
     // 结束前暂停
     system("pause");
     return 0;

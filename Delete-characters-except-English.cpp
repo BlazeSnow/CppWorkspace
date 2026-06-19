@@ -18,12 +18,12 @@
  *
  * 源码: https://github.com/BlazeSnow/CppWorkspace
  * 原始仓库: https://github.com/BlazeSnow/Delete-characters-except-English
- * 作者: BlazeSnow (2024-2025)
+ * 作者: BlazeSnow (2024-2026)
  */
 
+#include <cstdio>
 #include <filesystem>
 #include <fstream>
-#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -151,13 +151,13 @@ void delete_blank_n() {
 int main() {
     system("chcp 65001");
     system("cls");
-    printf("Copyright (C) 2024-2025 BlazeSnow. 保留所有权利。\n");
-    printf("当前程序版本号：v1.3.9\n");
-    printf("https://github.com/BlazeSnow/Delete-characters-except-English\n\n");
+    printf("Copyright (C) 2024-2026 BlazeSnow. 保留所有权利。\n");
+    printf("当前程序版本号：v1.3.10\n");
+    printf("https://github.com/BlazeSnow/CppWorkspace\n\n");
     vector<char> answer;
     int choose;
     printf("需要生成全新txt文件(0)还是处理现有txt文件(1)：\n");
-    cin >> choose;
+    scanf("%d", &choose);
     if (choose == 0) {
         fstream file("DCEE.txt", ios::out);
         if (file.is_open()) {

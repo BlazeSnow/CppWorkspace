@@ -20,12 +20,12 @@
  *
  * 源码: https://github.com/BlazeSnow/CppWorkspace
  * 原始仓库: https://github.com/BlazeSnow/three-point-password
- * 作者: BlazeSnow (2023-2025)
+ * 作者: BlazeSnow (2023-2026)
  */
 
+#include <cstdio>
 #include <filesystem>
 #include <fstream>
-#include <iostream>
 #include <queue>
 #include <random>
 #include <vector>
@@ -191,7 +191,7 @@ void countAndTransport() {
     int NumOfNumber = 0;
     while (true) {
         // 从输入读取
-        char temp = (char)cin.get();
+        char temp = (char)getchar();
         if (temp == '\n') {
             break;
         } else if (IfPosInLetter(temp) != -1) {
@@ -228,9 +228,9 @@ void countAndTransport() {
 int main() {
     system("chcp 65001");
     system("cls");
-    printf("Copyright (C) 2024-2025 BlazeSnow. 保留所有权利。\n");
-    printf("当前程序版本号：v1.0.3\n");
-    printf("https://github.com/BlazeSnow/three-point-password\n\n");
+    printf("Copyright (C) 2024-2026 BlazeSnow. 保留所有权利。\n");
+    printf("当前程序版本号：v1.0.4\n");
+    printf("https://github.com/BlazeSnow/CppWorkspace\n\n");
 
     printf("（0-生成特殊密钥；1-使用特殊密钥转换；2-无需特殊密钥转换）\n");
     printf("输入使用此程序的方法：");
