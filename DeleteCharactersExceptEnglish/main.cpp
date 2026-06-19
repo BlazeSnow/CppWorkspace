@@ -1,25 +1,6 @@
-/*
- * 背单词删中文 (Delete-characters-except-English)
- *
- * 将含有英文单词与中文解释的txt文件转化为仅含英文单词的纯文本。
- * 用于整理单词表——把带中文释义、词性标注的词典格式清洗成可直接背诵的单词列表。
- *
- * 处理流程:
- *   1. 读取DCEE.txt，只保留a-z/A-Z字母、英文句点、空格、回车、英文括号
- *   2. 删除29种英文词性缩写: n. pron. art. num. adj. adv. v. conj. prep.
- *      int. abbr. vt. vi. det. quant. aux. modal. ger. inf. part. refl.
- *      dem. poss. rel. coll. abs. conc. 等
- *   3. 删除英文括号及其包含的所有内容 (如 "(pl. ...)")
- *   4. 删除英文句点
- *   5. 合并多余空格、清除空行、删除行首空格
- *   6. 输出到 ANSWER-DCEE.txt
- *
- * 输入文件: DCEE.txt    输出文件: ANSWER-DCEE.txt
- *
- * 源码: https://github.com/BlazeSnow/CppWorkspace
- * 原始仓库: https://github.com/BlazeSnow/Delete-characters-except-English
- * 作者: BlazeSnow (2024-2026)
- */
+// 背单词删中文 (Delete-characters-except-English)
+// 源码: https://github.com/BlazeSnow/CppWorkspace
+// 作者: BlazeSnow
 
 #include <cstdio>
 #include <filesystem>

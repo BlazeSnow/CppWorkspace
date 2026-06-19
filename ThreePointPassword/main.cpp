@@ -1,27 +1,6 @@
-/*
- * 三点密码 (three-point-password)
- *
- * 一种字符替换式密码系统，因每个明文字符被替换为"数字+符号"两个字符而得名。
- *
- * 加密原理: 查表将每个字符映射为一对(digit, mark)，digit是0-9的数字，
- * mark是8种标点符号(,;.<:>-+)之一，共10×8=80种组合，覆盖英文大小写字母、
- * 空格和30种英文符号。再通过随机密钥文件对digit和mark做模运算偏移，
- * 实现二次加密，每组密钥用两个数字值。
- *
- * 支持字符集 (70个):
- *   小写字母 a-z、大写字母 A-Z、空格
- *   符号 , ! @ # $ % ^ & * ( ) < > . ? / ; : " [ ] { } ' + - ~
- *
- * 工作流程:
- *   加密方 → 选择0生成随机密钥文件 → 发送密钥文件给解密方
- *   加密方 → 选择1使用密钥 → 输入明文 → 得到密文(数字+符号交替)
- *   解密方 → 选择1使用密钥 → 输入密文 → 程序自动识别并还原明文
- *   测试用 → 选择2无密钥模式(全0密钥)，加解密无二次偏移
- *
- * 源码: https://github.com/BlazeSnow/CppWorkspace
- * 原始仓库: https://github.com/BlazeSnow/three-point-password
- * 作者: BlazeSnow (2023-2026)
- */
+// 三点密码 (three-point-password)
+// 源码: https://github.com/BlazeSnow/CppWorkspace
+// 作者: BlazeSnow
 
 #include <cstdio>
 #include <filesystem>

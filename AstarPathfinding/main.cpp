@@ -1,26 +1,6 @@
-/*
- * A星寻路 (astar-pathfinding)
- *
- * 基于A*启发式搜索算法的路径规划程序。核心原理: 从起点开始向四个方向
- * (右/左/上/下)扩展节点，每个节点通过 F = G + H 计算总代价——G是从起点
- * 走到当前点的步数，H是当前点到终点的曼哈顿距离(列差+行差)。每轮选取F值
- * 最小的节点继续扩展，直到抵达终点或搜索次数超限。
- *
- * 地图标记说明:
- *   0 = 空地(可通行)    1 = 障碍物(不可通行)
- *   2 = 起点(仅1个)     3 = 终点(仅1个)
- * 地图尺寸: 8行 × 10列，可通过编辑astar-pathfinding.txt自定义
- *
- * 工作流程:
- *   首次使用 → 选择0生成默认地图文件astar-pathfinding.txt
- *   自定义   → 用文本编辑器修改地图文件(数字之间用空格隔开)
- *   日常使用 → 选择1读取地图文件，程序计算并输出最优路径
- *   输出结果 → 坐标序列(从前往后) + 带路径标记'a'的地图可视化
- *
- * 源码: https://github.com/BlazeSnow/CppWorkspace
- * 原始仓库: https://github.com/BlazeSnow/astar-pathfinding
- * 作者: BlazeSnow (2024-2026)
- */
+// A星寻路 (astar-pathfinding)
+// 源码: https://github.com/BlazeSnow/CppWorkspace
+// 作者: BlazeSnow
 
 #include <cstdio>
 #include <cstring>

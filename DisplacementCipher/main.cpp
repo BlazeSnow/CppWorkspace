@@ -1,17 +1,6 @@
-/*
- * 移位密码 (displacement-cipher)
- *
- * 一种最简单的字符级加密算法。每个字符按其ASCII码值向后偏移固定距离
- * (PASSWORD=5) 实现加密，向前偏移实现解密。例如输入 "abc" → 编码为 "fgh"，
- * 将 "fgh" 解码还原为 "abc"。偏移距离可修改源码中的 PASSWORD 宏调整。
- *
- * 注意: 仅支持char范围的ASCII字符，超出范围的字符(如中文)偏移后可能
- * 变成不可打印字符。这是一个教学性质的古典密码实现，不具备实际安全性。
- *
- * 源码: https://github.com/BlazeSnow/CppWorkspace
- * 原始仓库: https://github.com/BlazeSnow/displacement-cipher
- * 作者: BlazeSnow (2023-2026)
- */
+// 移位密码 (displacement-cipher)
+// 源码: https://github.com/BlazeSnow/CppWorkspace
+// 作者: BlazeSnow
 
 #include <cstdio>
 #include <cstdlib>

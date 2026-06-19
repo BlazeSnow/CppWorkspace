@@ -1,22 +1,6 @@
-/*
- * 自定义互换密码 (Custom-interchange-password)
- *
- * 一种基于CSV文件的互换型密码系统。程序内置26对字母映射表:
- *   a→q, b→w, c→e, d→r, e→t, f→y, g→u, h→i, i→o, j→p,
- *   k→a, l→s, m→d, n→f, o→g, p→h, q→j, r→k, s→l, t→z,
- *   u→x, v→c, w→v, x→b, y→n, z→m
- * 不能识别的字符(数字、中文、符号等)原样输出。映射表可通过CSV文件自定义，
- * 使用表格处理软件(如Excel)编辑左列(源码)和右列(密码)即可互换加解密。
- *
- * 工作流程:
- *   首次使用 → 选择1创建Custom-interchange-password.csv密码文件
- *   日常使用 → 选择0读取密码文件，输入文本后同时输出编解码结果
- *   自定义  → 用Excel编辑csv文件，修改字母对应关系后重新运行选择0
- *
- * 源码: https://github.com/BlazeSnow/CppWorkspace
- * 原始仓库: https://github.com/BlazeSnow/Custom-interchange-password
- * 作者: BlazeSnow (2023-2026)
- */
+// 自定义互换密码 (Custom-interchange-password)
+// 源码: https://github.com/BlazeSnow/CppWorkspace
+// 作者: BlazeSnow
 
 #include <cstdio>
 #include <cstdlib>
