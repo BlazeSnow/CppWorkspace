@@ -12,7 +12,7 @@
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "-finput-charset=UTF-8",
                 "-fexec-charset=UTF-8",
-                "-std=c++23"
+                "-std=c++latest"
             ],
             "options": {
                 "cwd": "${fileDirname}"
