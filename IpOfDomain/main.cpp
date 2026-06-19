@@ -114,7 +114,7 @@ int main() {
         if (file.is_open()) {
             vector<string> domains_output = {"api.onedrive.com", "chi01pap001.storage.live.com", "d.docs.live.net"};
             for (const auto &i : domains_output) {
-                fprintf(&file, "%s\n", i.c_str());
+                file << i << endl;
             }
             printf("创建文件\"Ip_of_Domain.txt\"成功\n");
             printf("目录为：%s\n", filesystem::current_path().string().c_str());
