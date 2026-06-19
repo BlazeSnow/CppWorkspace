@@ -1,4 +1,4 @@
-// 自定义互换密码 (Custom-interchange-password)
+// 自定义互换密码 (CustomInterchangePassword)
 // 源码: https://github.com/BlazeSnow/CppWorkspace
 // 作者: BlazeSnow
 

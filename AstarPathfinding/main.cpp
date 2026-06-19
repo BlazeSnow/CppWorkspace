@@ -1,4 +1,4 @@
-// A星寻路 (astar-pathfinding)
+// A星寻路 (AstarPathfinding)
 // 源码: https://github.com/BlazeSnow/CppWorkspace
 // 作者: BlazeSnow
 

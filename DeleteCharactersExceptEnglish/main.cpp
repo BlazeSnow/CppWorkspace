@@ -1,4 +1,4 @@
-// 背单词删中文 (Delete-characters-except-English)
+// 背单词删中文 (DeleteCharactersExceptEnglish)
 // 源码: https://github.com/BlazeSnow/CppWorkspace
 // 作者: BlazeSnow
 

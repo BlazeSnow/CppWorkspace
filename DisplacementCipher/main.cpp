@@ -1,4 +1,4 @@
-// 移位密码 (displacement-cipher)
+// 移位密码 (DisplacementCipher)
 // 源码: https://github.com/BlazeSnow/CppWorkspace
 // 作者: BlazeSnow
 

@@ -1,4 +1,4 @@
-// 三点密码 (three-point-password)
+// 三点密码 (ThreePointPassword)
 // 源码: https://github.com/BlazeSnow/CppWorkspace
 // 作者: BlazeSnow
 
