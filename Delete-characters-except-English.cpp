@@ -1,0 +1,227 @@
+/*
+ * 背单词删中文 (Delete-characters-except-English)
+ *
+ * 将含有英文单词与中文解释的txt文件转化为仅含英文单词的纯文本。
+ * 用于整理单词表——把带中文释义、词性标注的词典格式清洗成可直接背诵的单词列表。
+ *
+ * 处理流程:
+ *   1. 读取DCEE.txt，只保留a-z/A-Z字母、英文句点、空格、回车、英文括号
+ *   2. 删除29种英文词性缩写: n. pron. art. num. adj. adv. v. conj. prep.
+ *      int. abbr. vt. vi. det. quant. aux. modal. ger. inf. part. refl.
+ *      dem. poss. rel. coll. abs. conc. 等
+ *   3. 删除英文括号及其包含的所有内容 (如 "(pl. ...)")
+ *   4. 删除英文句点
+ *   5. 合并多余空格、清除空行、删除行首空格
+ *   6. 输出到 ANSWER-DCEE.txt
+ *
+ * 输入文件: DCEE.txt    输出文件: ANSWER-DCEE.txt
+ *
+ * 源码: https://github.com/BlazeSnow/CppWorkspace
+ * 原始仓库: https://github.com/BlazeSnow/Delete-characters-except-English
+ * 作者: BlazeSnow (2024-2025)
+ */
+
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+const filesystem::path CurrentPath = filesystem::current_path();
+const string CurrentPathString = CurrentPath.string();
+
+const vector<vector<char> > words_delete = {
+    // 英语单词类型常用缩写
+    {'n', '.'},
+    {'p', 'r', 'o', 'n', '.'},
+    {'a', 'r', 't', '.'},
+    {'n', 'u', 'm', '.'},
+    {'a', 'd', 'j', '.'},
+    {'a', 'd', 'v', '.'},
+    {'v', '.'},
+    {'c', 'o', 'n', 'j', '.'},
+    {'p', 'r', 'e', 'p', '.'},
+    {'i', 'n', 't', '.'},
+    {'a', 'b', 'b', 'r', '.'},
+    {'v', 't', '.'},
+    {'v', 'i', '.'},
+    {'d', 'e', 't', '.'},
+    {'q', 'u', 'a', 'n', 't', '.'},
+    {'a', 'u', 'x', '.'},
+    {'m', 'o', 'd', 'a', 'l', '.'},
+    {'g', 'e', 'r', '.'},
+    {'i', 'n', 'f', '.'},
+    {'p', 'a', 'r', 't', '.'},
+    {'r', 'e', 'f', 'l', '.'},
+    {'d', 'e', 'm', '.'},
+    {'p', 'o', 's', 's', '.'},
+    {'r', 'e', 'l', '.'},
+    {'c', 'o', 'l', 'l', '.'},
+    {'a', 'b', 's', '.'},
+    {'c', 'o', 'n', 'c', '.'},
+};
+
+static vector<char> characters;
+
+// 删除特殊词
+void compare_extra_words() {
+    for (auto i = characters.begin(); i != characters.end(); i++) {
+        int count = 0;
+        for (const auto &words: words_delete) {
+            auto it = i;
+            for (auto j: words) {
+                if (*it == j) {
+                    ++it;
+                    ++count;
+                }
+            }
+            if (count == words.size()) {
+                characters.erase(i, it);
+            }
+            count = 0;
+        }
+    }
+}
+
+// 删除括号及其内容
+void delete_parenthesis() {
+    for (auto i = characters.begin(); i != characters.end(); i++) {
+        if (*i == '(') {
+            for (auto it = i; it != characters.end(); it++) {
+                if (*it == ')') {
+                    characters.erase(i, it + 1);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+// 删除double空格
+void delete_blank() {
+    for (auto i = characters.begin(); i != characters.end();) {
+        if (*i == ' ' && *(i + 1) == ' ') {
+            characters.erase(i);
+        } else {
+            i++;
+        }
+    }
+}
+
+// 删除.
+void delete_dot() {
+    for (auto i = characters.begin(); i != characters.end();) {
+        if (*i == '.') {
+            characters.erase(i);
+        } else {
+            i++;
+        }
+    }
+}
+
+// 删除空格+回车＆回车+回车＆回车+空格
+void delete_blank_n() {
+    // （空格+回车）
+    for (auto i = characters.begin(); i != characters.end();) {
+        if (*i == ' ' && *(i + 1) == '\n') {
+            characters.erase(i, i + 1);
+        } else {
+            i++;
+        }
+    }
+    // （回车）+回车
+    for (auto i = characters.begin(); i != characters.end();) {
+        if (*i == '\n' && *(i + 1) == '\n') {
+            characters.erase(i);
+        } else {
+            i++;
+        }
+    }
+    // 回车+（空格）
+    for (auto i = characters.begin(); i != characters.end();) {
+        if (*i == '\n' && *(i + 1) == ' ') {
+            characters.erase(i + 1);
+        } else {
+            i++;
+        }
+    }
+}
+
+int main() {
+    system("chcp 65001");
+    system("cls");
+    printf("Copyright (C) 2024-2025 BlazeSnow. 保留所有权利。\n");
+    printf("当前程序版本号：v1.3.9\n");
+    printf("https://github.com/BlazeSnow/Delete-characters-except-English\n\n");
+    vector<char> answer;
+    int choose;
+    printf("需要生成全新txt文件(0)还是处理现有txt文件(1)：\n");
+    cin >> choose;
+    if (choose == 0) {
+        fstream file("DCEE.txt", ios::out);
+        if (file.is_open()) {
+            file.close();
+            printf("已生成全新\"DCEE.txt\"文件\n");
+            printf("目录为：%s\n", CurrentPathString.c_str());
+            system("pause");
+        } else {
+            fprintf(stderr, "错误：\"DCEE.txt\"文件生成失败，请重试\n");
+            fprintf(stderr, "目录为：%s\n", CurrentPathString.c_str());
+            system("pause");
+        }
+    } else if (choose == 1) {
+        fstream file("DCEE.txt", ios::in);
+        if (file.is_open()) {
+            // 输入文件内容
+            while (true) {
+                char temp;
+                file >> noskipws >> temp;
+                if (('a' <= temp && temp <= 'z') || ('A' <= temp && temp <= 'Z') ||
+                    temp == '.' || temp == ' ' || temp == '\n' || temp == '(' ||
+                    temp == ')') {
+                    // 正常收集
+                    characters.push_back(temp);
+                } else {
+                    characters.push_back(' ');
+                }
+                if (file.eof()) {
+                    break;
+                }
+            }
+            file.close();
+            printf("文件读取完毕\n");
+            // 删除特殊词
+            compare_extra_words();
+            delete_parenthesis();
+            delete_dot();
+            delete_blank();
+            delete_blank_n();
+            // 写入answer
+            for (const auto &i: characters) {
+                answer.push_back(i);
+            }
+            // 写入新文件
+            fstream file1("ANSWER-DCEE.txt", ios::out);
+            if (file1.is_open()) {
+                for (auto i: answer) {
+                    file1 << i;
+                }
+                printf("处理后内容已写入\"ANSWER-DCEE.txt\"文件\n");
+                printf("目录为：%s\n", CurrentPathString.c_str());
+                file1.close();
+                system("pause");
+            } else {
+                fprintf(stderr, "ERROR:创建输出文件失败\n");
+                system("pause");
+            }
+        } else {
+            fprintf(stderr, "ERROR:读取文件失败\n");
+            system("pause");
+        }
+    } else {
+        fprintf(stderr, "ERROR:输入内容不合法\n");
+        system("pause");
+    }
+    return 0;
+}
