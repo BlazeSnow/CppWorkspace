@@ -4,15 +4,10 @@
         {
             "type": "shell",
             "label": "build active file",
-            "command": "D:\\scoop\\apps\\mingw\\current\\bin\\g++.exe",
+            "command": "cmd",
             "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "-finput-charset=UTF-8",
-                "-fexec-charset=UTF-8",
-                "-std=c++26"
+                "/c",
+                "chcp 65001 >nul && del /f \"${fileDirname}\\${fileBasenameNoExtension}.exe\" 2>nul & D:\\scoop\\apps\\mingw\\current\\bin\\g++.exe -g \"${file}\" -o \"${fileDirname}\\${fileBasenameNoExtension}.exe\" -finput-charset=UTF-8 -fexec-charset=UTF-8 -std=c++26"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -33,7 +28,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "编译当前文件: g++ -g -std=c++23 …"
+            "detail": "编译当前文件: g++ -g -std=c++26 …"
         }
     ]
 }
