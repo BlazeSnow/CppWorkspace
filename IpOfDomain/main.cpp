@@ -4,8 +4,8 @@
 
 #include <cstdio>
 #include <cstring>
-#include <fstream>
 #include <filesystem>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <winsock2.h>
@@ -17,10 +17,10 @@ using namespace std;
 
 const int CONNECT_TIMEOUT = 5;
 
-vector<string> getIPs(const string& domain) {
+vector<string> getIPs(const string &domain) {
     vector<string> ips;
     WSADATA wsaData;
-    struct addrinfo* res = nullptr;
+    struct addrinfo *res = nullptr;
     struct addrinfo hints;
     char ipstr[INET6_ADDRSTRLEN];
 
@@ -40,14 +40,14 @@ vector<string> getIPs(const string& domain) {
         return ips;
     }
 
-    for (struct addrinfo* p = res; p != nullptr; p = p->ai_next) {
-        void* addr = nullptr;
+    for (struct addrinfo *p = res; p != nullptr; p = p->ai_next) {
+        void *addr = nullptr;
 
         if (p->ai_family == AF_INET) {
-            struct sockaddr_in* ipv4 = (struct sockaddr_in*)p->ai_addr;
+            struct sockaddr_in *ipv4 = (struct sockaddr_in *)p->ai_addr;
             addr = &(ipv4->sin_addr);
         } else {
-            struct sockaddr_in6* ipv6 = (struct sockaddr_in6*)p->ai_addr;
+            struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *)p->ai_addr;
             addr = &(ipv6->sin6_addr);
         }
 
@@ -60,13 +60,13 @@ vector<string> getIPs(const string& domain) {
         }
 
         DWORD timeout = CONNECT_TIMEOUT * 1000;
-        setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(timeout));
-        setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (char*)&timeout, sizeof(timeout));
+        setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout));
+        setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (char *)&timeout, sizeof(timeout));
 
         if (p->ai_family == AF_INET) {
-            ((struct sockaddr_in*)p->ai_addr)->sin_port = htons(80);
+            ((struct sockaddr_in *)p->ai_addr)->sin_port = htons(80);
         } else {
-            ((struct sockaddr_in6*)p->ai_addr)->sin6_port = htons(80);
+            ((struct sockaddr_in6 *)p->ai_addr)->sin6_port = htons(80);
         }
 
         bool connected = (connect(sock, p->ai_addr, p->ai_addrlen) == 0);
@@ -81,10 +81,10 @@ vector<string> getIPs(const string& domain) {
     return ips;
 }
 
-void getIPAddressesAndTestConnectivity(const string& domain) {
+void getIPAddressesAndTestConnectivity(const string &domain) {
     vector<string> ips = getIPs(domain);
 
-    for (const auto& ip : ips) {
+    for (const auto &ip : ips) {
         printf("%s\n", ip.c_str());
     }
 }
@@ -113,7 +113,7 @@ int main() {
         fstream file("Ip_of_Domain.txt", ios::out);
         if (file.is_open()) {
             vector<string> domains_output = {"api.onedrive.com", "chi01pap001.storage.live.com", "d.docs.live.net"};
-            for (const auto& i : domains_output) {
+            for (const auto &i : domains_output) {
                 fprintf(&file, "%s\n", i.c_str());
             }
             printf("创建文件\"Ip_of_Domain.txt\"成功\n");
@@ -124,7 +124,7 @@ int main() {
         }
     }
 
-    for (const auto& domain : domains) {
+    for (const auto &domain : domains) {
         printf("%s：\n", domain.c_str());
         getIPAddressesAndTestConnectivity(domain);
         printf("\n");
