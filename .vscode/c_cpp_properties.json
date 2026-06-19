@@ -14,7 +14,7 @@
             "defines": [],
             "compilerPath": "D:/scoop/apps/mingw/current/bin/g++.exe",
             "cStandard": "c23",
-            "cppStandard": "c++latest",
+            "cppStandard": "c++26",
             "intelliSenseMode": "windows-gcc-x64"
         }
     ],
