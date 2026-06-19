@@ -5,4 +5,3 @@ BreakBeforeBraces: Attach
 AllowShortIfStatementsOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
 ColumnLimit: 120
-InsertNewlineAtEOF: true
