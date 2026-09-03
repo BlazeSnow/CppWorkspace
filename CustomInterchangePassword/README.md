@@ -1,4 +1,3 @@
 # 自定义密码
 
-1. 此项目使用csv文件作为自定义密码的存放文件
-2. 密码互换方式可以通过修改csv文件进行自定义
+已迁移回原仓库：<https://github.com/BlazeSnow/Custom-interchange-password>
