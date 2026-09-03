@@ -1,5 +1,3 @@
 # 移位密码
 
-1. 此项目是**字符位移**密码
-2. 此密码将字符前后移动来进行编解码
-3. 暂时只支持```char```类型字符
+已迁移回原仓库：<https://github.com/BlazeSnow/displacement-cipher>
